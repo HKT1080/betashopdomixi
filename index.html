@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Bán Sỉ Vau - Phiên Bản Siêu Cấp VIP</title>
+</head>
+<body>
+
+<div class="app-container">
+    <!-- HEADER ĐỔI MÀU LẤP LÁNH -->
+    <header class="shop-header">
+        <h1 class="shop-title">✨ Shop Bán Sỉ Vau ✨</h1>
+        <p style="margin: 0; font-size: 0.9em; opacity: 0.9;">Hệ thống bán sỉ, quay thưởng lầy lội nhất hệ mặt trời</p>
+    </header>
+
+    <!-- HỆ THỐNG TÀI KHOẢN VÀ CỔNG NẠP TIỀN QUỐC TẾ -->
+    <section class="auth-box">
+        <div id="auth-form-wrapper" class="auth-form">
+            <input type="text" id="reg-user" placeholder="Tên tài khoản..." required>
+            <input type="password" id="reg-pass" placeholder="Mật khẩu..." required>
+            <input type="email" id="reg-email" placeholder="Email nhận OTP lụi..." required>
+            <button class="btn-general" onclick="handleRegister()">ĐĂNG KÝ NHẬN 10 TRIỆU</button>
+        </div>
+        
+        <div id="user-info-panel" class="user-info-panel">
+            <div class="badge-item">👤 Tài khoản: <span id="display-name" style="color:#1e3a8a">...</span></div>
+            <div class="badge-item">💰 Số dư: <span id="display-balance" style="color:var(--danger)">0</span> đ</div>
+            <button class="btn-deposit-open" onclick="toggleDepositModal(true)">💳 NẠP TIỀN ĐIỆN TỬ</button>
+        </div>
+    </section>
+
+    <!-- BỐ CỤC CHÍNH CHIA 2 CỘT CHỐNG TRÀN -->
+    <div class="main-layout">
+        
+        <!-- CỘT BÊN TRÁI: DANH SÁCH MẶT HÀNG SỈ -->
+        <div class="left-column">
+            <h2 class="section-title">I. Danh Sách Chọn Mặt Hàng Sỉ</h2>
+            <div class="products-list">
+                
+                <!-- Mặt hàng 1 -->
+                <div class="product-card">
+                    <div class="prod-icon">🎮</div>
+                    <div class="product-details">
+                        <h3>Gói Pack Online Game FC 27</h3>
+                        <div class="product-price">2,300,000 đ</div>
+                        <div class="product-stock">Kho sỉ: <strong id="stock-p1">1</strong> cái</div>
+                        <div id="acc-info-box" class="info-result-box">
+                            <strong>🔑 ACC GAME ĐỘC QUYỀN:</strong><br>
+                            • TK: <span class="highlight-txt">MESSIBETTERTHANRONALDO</span><br>
+                            • MK: <span class="highlight-txt">2022worldcup</span>
+                        </div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="btn-qty" onclick="changeQty('p1', -1)">-</button>
+                        <span class="qty-val" id="qty-p1">0</span>
+                        <button class="btn-qty" onclick="changeQty('p1', 1)">+</button>
+                    </div>
+                </div>
+
+                <!-- Mặt hàng 2 -->
+                <div class="product-card">
+                    <div class="prod-icon">📱</div>
+                    <div class="product-details">
+                        <h3>iPhone 20 Pro Max Siêu Cấp</h3>
+                        <div class="product-price">500,000 đ</div>
+                        <div class="product-stock">Kho sỉ: <strong id="stock-p2">2</strong> cái</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="btn-qty" onclick="changeQty('p2', -1)">-</button>
+                        <span class="qty-val" id="qty-p2">0</span>
+                        <button class="btn-qty" onclick="changeQty('p2', 1)">+</button>
+                    </div>
+                </div>
+
+                <!-- Mặt hàng 3 -->
+                <div class="product-card">
+                    <div class="prod-icon">💻</div>
+                    <div class="product-details">
+                        <h3>Laptop ThinkPad T480 Bền Bỉ</h3>
+                        <div class="product-price">2,000,000 đ</div>
+                        <div class="product-stock">Kho sỉ: <strong id="stock-p3">42</strong> cái</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="btn-qty" onclick="changeQty('p3', -1)">-</button>
+                        <span class="qty-val" id="qty-p3">0</span>
+                        <button class="btn-qty" onclick="changeQty('p3', 1)">+</button>
+                    </div>
+                </div>
+
+                <!-- MỤC SÁNG TẠO THÊM: HÀNG ĐỘC QUYỀN VUI VẺ -->
+                <h2 class="section-title" style="margin-top:15px;">🚀 III. Hàng Độc Lạ Chỉ Có Ở Tộc Vau</h2>
+                
+                <div class="product-card special-card">
+                    <div class="prod-icon">❤️</div>
+                    <div class="product-details">
+                        <h3>1 Tấn Lời Khen Từ Người Yêu Cũ</h3>
+                        <div class="product-price">1,000 đ</div>
+                        <div class="product-stock">Kho sỉ: <strong id="stock-p4">999</strong> cái</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="btn-qty" onclick="changeQty('p4', -1)">-</button>
+                        <span class="qty-val" id="qty-p4">0</span>
+                        <button class="btn-qty" onclick="changeQty('p4', 1)">+</button>
+                    </div>
+                </div>
+
+                <div class="product-card special-card">
+                    <div class="prod-icon">⏳</div>
+                    <div class="product-details">
+                        <h3>Vé Du Hành Sửa Sai Quá Khứ</h3>
+                        <div class="product-price">5,000,000 đ</div>
+                        <div class="product-stock">Kho sỉ: <strong id="stock-p5">3</strong> cái</div>
+                    </div>
+                    <div class="qty-control">
+                        <button class="btn-qty" onclick="changeQty('p5', -1)">-</button>
+                        <span class="qty-val" id="qty-p5">0</span>
+                        <button class="btn-qty" onclick="changeQty('p5', 1)">+</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CỘT BÊN PHẢI: GIỎ HÀNG VÀ MÃ KHUYẾN MÃI -->
+        <div class="right-column">
+            <h2 class="section-title">🛒 Giỏ Hàng Tổng Hợp</h2>
+            <div class="cart-box">
+                <div id="cart-items-list">
+                    <div class="empty-cart">Chưa chọn món sỉ nào...</div>
+                </div>
+                
+                <div id="cart-summary" style="display:none; margin-top: 12px; border-top: 1px dashed #cbd5e1; padding-top: 10px;">
+                    <!-- Ô NHẬP MÃ GIẢM GIÁ MỚI -->
+                    <div class="coupon-section">
+                        <input type="text" id="coupon-code" placeholder="Nhập mã: VAU999 để giảm tiền...">
+                        <button onclick="applyCoupon()">Áp Dụng</button>
+                    </div>
+                    <div id="coupon-msg" style="font-size:0.85em; margin: 4px 0; font-weight:bold;"></div>
+
+                    <div class="summary-line">
+                        <span>Tạm tính:</span>
+                        <span id="cart-subtotal">0 đ</span>
+                    </div>
+                    <div class="summary-line" id="discount-line" style="display:none; color:var(--success);">
+                        <span>Giảm giá độc quyền:</span>
+                        <span id="cart-discount">-0 đ</span>
+                    </div>
+                    <div class="summary-line final-total">
+                        <span>Tổng cần trả:</span>
+                        <span id="cart-total-price">0 đ</span>
+                    </div>
+                    <button class="btn-general" style="background:var(--success); width:100%; margin-top:10px; font-size:1.1em;" onclick="openDeliveryForm()">BẤM THANH TOÁN ĐƠN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KHUNG ĐIỀN THÔNG TIN GIAO HÀNG SỈ -->
+    <div id="delivery-form" class="delivery-form-container">
+        <h4>📦 Thông Tin Nhận Hàng Hoá Sỉ</h4>
+        <div class="form-grid">
+            <input type="text" id="deliv-name" placeholder="Tên người nhận sỉ..." required>
+            <input type="text" id="deliv-phone" placeholder="Số điện thoại đầu số VN..." required>
+            <input type="text" id="deliv-address" placeholder="Địa chỉ kho nhận hàng chi tiết..." required>
+        </div>
+        <button class="btn-general" style="background:#1e3a8a; width:100%; margin-top:5px;" onclick="submitDelivery()">XÁC NHẬN GIAO HÀNG & TRỪ QUỸ</button>
+    </div>
+
+    <!-- MỤC II. VÒNG QUAY MAY MẮN HOÀN THIỆN -->
+    <section class="wheel-section">
+        <h2 class="section-title" style="margin:0; width:100%;">II. Vòng Quay May Mắn Độc Đắc (Còn <span id="spin-count">3</span> lượt Free)</h2>
+        
+        <div class="wheel-outer">
+            <div class="wheel-pointer"></div>
+            <div id="wheel" class="wheel"></div>
+        </div>
+
+        <button id="btn-spin" class="btn-spin" onclick="spinWheel()" disabled>QUAY THƯỞNG NGAY</button>
+        <div id="reward-display" class="reward-alert-box"></div>
+
+        <!-- Khung điền thông tin quà trúng thưởng -->
+        <div id="reward-delivery-form" class="delivery-form-container" style="width: 100%;">
+            <h4 style="margin:0 0 10px 0; color:#065f46">🎁 Điền Địa Chỉ Ship Phần Thưởng May Mắn</h4>
+            <div class="form-grid">
+                <input type="text" id="reward-name" placeholder="Tên người nhận giải..." required>
+                <input type="text" id="reward-phone" placeholder="Số điện thoại..." required>
+                <input type="text" id="reward-address" placeholder="Địa chỉ nhà riêng..." required>
+            </div>
+```html
+<style>
+    :root {
+        --primary: #2563eb;
+        --primary-hover: #1d4ed8;
+        --success: #16a34a;
+        --danger: #dc2626;
+        --bg: #f0f4f8;
+        --card-bg: #ffffff;
+        --text: #1e293b;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 15px; display: flex; justify-content: center; }
+    .app-container { width: 100%; max-width: 850px; display: flex; flex-direction: column; gap: 20px; }
+    
+    /* Header hiệu ứng động lung linh */
+    .shop-header { background: linear-gradient(135deg, #1e3a8a, #3b82f6, #10b981); background-size: 200% 200%; animation: gradientBG 8s ease infinite; color: white; padding: 25px; border-radius: 16px; text-align: center; box-shadow: 0 4px 15px rgba(37,99,235,0.15); }
+    @keyframes gradientBG { 0% {background-position:0% 50%} 50% {background-position:100% 50%} 100% {background-position:0% 50%} }
+    .shop-title { font-size: 2.2em; font-weight: 900; margin: 0 0 5px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+    
+    /* Panel thông tin user */
+    .auth-box { background: white; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+    .auth-form { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .auth-form input { padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; width: 100%; max-width: 170px; font-size: 0.9em; }
+    .user-info-panel { display: none; width: 100%; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: #f0fdf4; padding: 12px 20px; border-radius: 8px; border: 1px solid #bbf7d0; font-weight: bold; }
+    .badge-item { font-size: 1.05em; display: flex; align-items: center; gap: 4px; }
+    .btn-deposit-open { background: linear-gradient(to r, #f59e0b, #d97706); color:white; border:none; padding: 8px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+    
+    .section-title { font-size: 1.35em; font-weight: 800; color: #0f172a; margin: 0 0 12px 0; border-left: 5px solid var(--primary); padding-left: 10px; text-transform: uppercase; }
+    
+    /* Bố cục 2 cột chống bóp nghẹt diện tích */
+    .main-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; align-items: start; }
+    @media (max-width: 768px) { .main-layout { grid-template-columns: 1fr; } }
+    
+    .products-list { display: flex; flex-direction: column; gap: 12px; }
+    .product-card { background: white; border-radius: 12px; padding: 15px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #e2e8f0; gap: 12px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+    .special-card { border: 1px dashed #10b981; background: #f0fdf4; }
+    .prod-icon { font-size: 2.2em; width: 50px; text-align: center; }
+    .product-details { flex: 1; min-width: 0; }
+    .product-details h3 { margin: 0 0 4px 0; color: #0f172a; font-size: 1.05em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .product-price { color: var(--danger); font-weight: bold; font-size: 1.05em; }
+    .product-stock { font-size: 0.85em; color: #64748b; margin-top: 2px; }
+    
+    /* Khung điều chỉnh số lượng */
+    .qty-control { display: flex; align-items: center; gap: 8px; background: #f1f5f9; padding: 4px; border-radius: 6px; }
+    .btn-qty { border: none; background: white; width: 28px; height: 28px; font-weight: bold; cursor: pointer; border-radius: 4px; }
+    .btn-qty:hover { background: var(--primary); color:white; }
+    .qty-val { font-weight: bold; min-width: 18px; text-align: center; }
+    
+    /* Giỏ hàng */
+    .cart-box { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 15px; }
+    .empty-cart { color: #94a3b8; text-align: center; font-style: italic; padding: 10px 0; }
+    .cart-item-row { display: flex; justify-content: space-between; font-size: 0.9em; margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px solid #f8fafc; }
+    .summary-line { display: flex; justify-content: space-between; font-size: 0.95em; margin-bottom: 6px; }
+    .final-total { font-weight: bold; font-size: 1.15em; border-top: 1px solid #e2e8f0; padding-top: 8px; margin-top: 8px; }
+    
+    /* Coupon Section */
+    .coupon-section { display: flex; gap: 5px; margin-bottom: 10px; }
+    .coupon-section input { flex:1; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-size: 0.85em; }
+    .coupon-section button { background: #334155; color: white; border: none; padding: 0 10px; border-radius: 4px; cursor: pointer; font-size: 0.85em; }
+    
+    .info-result-box { display: none; background: #fffde7; border-left: 4px solid #eab308; padding: 10px; margin-top: 8px; border-radius: 6px; font-size: 0.85em; word-break: break-all; }
+    .highlight-txt { color: var(--danger); font-weight: bold; background: rgba(220,38,38,0.05); padding: 0 4px; border-radius: 2px; }
+    
+    .delivery-form-container { display: none; background: #f1f5f9; padding: 15px; border-radius: 8px; margin-top: 15px; border: 1px solid #cbd5e1; }
+    .form-grid { display: flex; flex-direction: column; gap: 8px; }
+    .form-grid input { padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.9em; width: 100%; }
+    
+    /* Vòng Quay May Mắn */
+    .wheel-section { background: white; border-radius: 16px; padding: 20px; border: 1px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; gap: 15px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+    .wheel-outer { position: relative; width: 230px; height: 230px; }
+    .wheel { width: 100%; height: 100%; border-radius: 50%; border: 6px solid #1e3a8a; background: conic-gradient(
+        #ef4444 0deg 0.9deg, #3b82f6 0.9deg 3.6deg, #10b981 3.6deg 18deg, #f59e0b 18deg 36deg, #8b5cf6 36deg 72deg, #ec4899 72deg 144deg, #64748b 144deg 252deg, #1e293b 252deg 360deg
+    ); transition: transform 4s cubic-bezier(0.1, 0.8, 0.1, 1); }
+    .wheel-pointer { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 24px solid #dc2626; z-index: 10; }
+    .btn-spin { background: linear-gradient(to r, #ea580c, #f59e0b); color: white; border: none; padding: 12px 40px; font-size: 1.1em; font-weight: bold; border-radius: 30px; cursor: pointer; box-shadow: 0 4px 10px rgba(234,88,12,0.2); }
+    .btn-spin:disabled { background: #cbd5e1; cursor:not-allowed; box-shadow:none; }
+    .reward-alert-box { display: none; background: #ecfdf5; border: 1px solid #10b981; padding: 12px; border-radius: 8px; text-align: center; color: #065f46; font-weight: bold; width: 100%; font-size: 0.95em; }
+
+    /* Lớp phủ phương thức Nạp tiền ảo (Modal) */
+    .modal-overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:100; align-items:center; justify-content:center; padding:15px; }
+    .modal-content { background:white; width:100%; max-width:465px; border-radius:12px; padding:20px; box-shadow:0 10px 25px rgba(0,0,0,0.2); }
+    .method-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin: 15px 0; }
+    .method-card { border: 1px solid #cbd5e1; padding: 10px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9em; text-align: center; }
+    .method-card.active { border-color: var(--primary); background: #eff6ff; color: var(--primary); }
+    .method-detail-area { background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e2e8f0; font-size: 0.9em; margin-bottom: 12px; }
+    
+    .btn-general { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+</style>
+<script>
+    const user = { registered: false, username: "", balance: 0 };
+    const products = {
+        p1: { name: "Gói Pack Online FC 27", price: 2300000, stock: 1, selected: 0 },
+        p2: { name: "iPhone 20 Pro Max", price: 500000, stock: 2, selected: 0 },
+        p3: { name: "ThinkPad T480", price: 2000000, stock: 42, selected: 0 },
+        p4: { name: "1 Tấn Lời Khen Từ NY Cũ", price: 1000, stock: 999, selected: 0 },
+        p5: { name: "Vé Du Hành Sửa Sai Quá Khứ", price: 5000000, stock: 3, selected: 0 }
+    };
+    let freeSpins = 3; let isSpinning = false;
+    let activeDepositMethod = "bank";
+    let couponApplied = false; let discountValue = 0;
+
+    function handleRegister() {
+        const u = document.getElementById("reg-user").value.trim();
+        const p = document.getElementById("reg-pass").value.trim();
+        const e = document.getElementById("reg-email").value.trim();
+        if (!u || !p || !e) { alert("Vui lòng điền đầy đủ thông tin!"); return; }
+        user.registered = true; user.username = u; user.balance = 10000000;
+        document.getElementById("auth-form-wrapper").style.display = "none";
+        document.getElementById("user-info-panel").style.display = "flex";
+        document.getElementById("display-name").innerText = user.username;
+        updateUI();
+        alert(`🎉 Tài khoản [${user.username}] đăng ký thành công và nhận 10.000.000đ!`);
+    }
+
+    function changeQty(id, delta) {
+        if (!user.registered) { alert("Bạn cần đăng ký tài khoản trước!"); return; }
+        const prod = products[id]; const nextQty = prod.selected + delta;
+        if (nextQty < 0) return;
+        if (nextQty > prod.stock) { alert(`⚠️ Kho sỉ chỉ còn lại đúng ${prod.stock} cái!`); return; }
+        prod.selected = nextQty;
+        document.getElementById(`qty-${id}`).innerText = nextQty;
+        updateUI();
+    }
+</script>
+<script>
+    function applyCoupon() {
+        const code = document.getElementById("coupon-code").value.trim();
+        if (code === "VAU999") {
+            couponApplied = true;
+            document.getElementById("coupon-msg").style.color = "var(--success)";
+            document.getElementById("coupon-msg").innerText = "✓ Áp dụng mã VAU999 thành công! Giảm ngay 1,000,000 đ.";
+            updateUI();
+        } else { alert("Mã giảm giá không chính xác!"); }
+    }
+
+    function updateUI() {
+        document.getElementById("display-balance").innerText = user.balance.toLocaleString();
+        document.getElementById("stock-p1").innerText = products.p1.stock;
+        document.getElementById("stock-p2").innerText = products.p2.stock;
+        document.getElementById("stock-p3").innerText = products.p3.stock;
+        document.getElementById("stock-p4").innerText = products.p4.stock;
+        document.getElementById("stock-p5").innerText = products.p5.stock;
+        document.getElementById("spin-count").innerText = freeSpins;
+        if (user.registered) document.getElementById("btn-spin").disabled = freeSpins <= 0 || isSpinning;
+
+        const list = document.getElementById("cart-items-list");
+        const sumBox = document.getElementById("cart-summary");
+        let html = ""; let sub = 0; let has = false;
+
+        for (let k in products) {
+            let p = products[k];
+            if (p.selected > 0) {
+                has = true; let cost = p.selected * p.price; sub += cost;
+                html += `<div class="cart-item-row"><span>${p.name} (x${p.selected})</span><b>${cost.toLocaleString()} đ</b></div>`;
+            }
+        }
+        if (has) {
+            list.innerHTML = html; sumBox.style.display = "block";
+            discountValue = couponApplied ? 1000000 : 0;
+            let final = sub - discountValue; if (final < 0) final = 0;
+            document.getElementById("cart-subtotal").innerText = sub.toLocaleString() + " đ";
+            if (couponApplied) {
+                document.getElementById("discount-line").style.display = "flex";
+                document.getElementById("cart-discount").innerText = "-" + discountValue.toLocaleString() + " đ";
+            }
+            document.getElementById("cart-total-price").innerText = final.toLocaleString() + " đ";
+        } else { list.innerHTML = `<div class="empty-cart">Chưa chọn món sỉ nào...</div>`; sumBox.style.display = "none"; }
+    }
+
+    function toggleDepositModal(show) { document.getElementById("deposit-modal").style.display = show ? "flex" : "none"; }
+    function selectMethod(m) {
+        activeDepositMethod = m;
+        document.querySelectorAll(".method-card").forEach(c => c.classList.remove("active"));
+        document.getElementById(`method-${m}`).classList.add("active");
+        document.getElementById("area-bank").style.display = m === "bank" ? "block" : "none";
+        document.getElementById("area-card").style.display = m === "card" ? "block" : "none";
+        document.getElementById("area-faith").style.display = m === "faith" ? "block" : "none";
+    }
+    function executeDeposit() {
+        const amt = parseInt(document.getElementById("deposit-amount-input").value);
+        if (isNaN(amt) || amt <= 0) { alert("Vui lòng nhập số tiền hợp lệ!"); return; }
+        user.balance += amt; document.getElementById("deposit-amount-input").value = "";
+        toggleDepositModal(false); updateUI();
+        alert(`💳 Nạp thành công ${amt.toLocaleString()}đ vào số dư ví ảo!`);
+    }
+</script>
+<script>
+    function openDeliveryForm() {
+        let sub = 0; for (let k in products) sub += products[k].selected * products[k].price;
+        let final = sub - discountValue; if (final < 0) final = 0;
+        if (final > user.balance) { alert("❌ Số dư ví ảo không đủ tiền! Vui lòng nạp thêm."); return; }
+        document.getElementById("delivery-form").style.display = "block";
+        document.getElementById("delivery-form").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function submitDelivery() {
+        const n = document.getElementById("deliv-name").value.trim();
+        const p = document.getElementById("deliv-phone").value.trim();
+        const a = document.getElementById("deliv-address").value.trim();
+        if (!n || !p || !a) { alert("Vui lòng điền đầy đủ thông tin giao hàng!"); return; }
+        let sub = 0; for (let k in products) sub += products[k].selected * products[k].price;
+        let final = sub - discountValue; if (final < 0) final = 0;
+        user.balance -= final;
+        if (products.p1.selected > 0) document.getElementById("acc-info-box").style.display = "block";
+        for (let k in products) { let prod = products[k]; prod.stock -= prod.selected; prod.selected = 0; document.getElementById(`qty-${k}`).innerText = "0"; }
+        document.getElementById("deliv-name").value = ""; document.getElementById("deliv-phone").value = ""; document.getElementById("deliv-address").value = "";
+        document.getElementById("delivery-form").style.display = "none";
+        couponApplied = false; document.getElementById("coupon-code").value = ""; document.getElementById("coupon-msg").innerText = "";
+        updateUI(); alert(`🙏 Đơn hàng sỉ thành công! Tộc trưởng Shop Vau chân thành cảm ơn.`);
+    }
+
+    function spinWheel() {
+        if (freeSpins <= 0 || isSpinning) return;
+        isSpinning = true; freeSpins -= 1; updateUI();
+        document.getElementById("reward-display").style.display = "none";
+        document.getElementById("reward-delivery-form").style.display = "none";
+        const rand = Math.random() * 100; let txt = ""; let angle = 0;
+        if (rand < 0.25) { txt = "iPhone 100 pro legendary (0.25%)"; angle = 0.45; }
+        else if (rand < 1.0) { txt = "Card đồ họa RTX 6090ti Super (0.75%)"; angle = 2.25; }
+        else if (rand < 5.0) { txt = "Một bịch láp siêu ngon (4%)"; angle = 10.8; }
+        else if (rand < 10.0) { txt = "Một cái TV OLED 30 inch (5%)"; angle = 27; }
+        else if (rand < 20.0) { txt = "Một chiếc hộp bí ẩn siêu VIP (10%)"; angle = 54; }
+        else if (rand < 40.0) { txt = "Một chiếc Ferrari mô hình (20%)"; angle = 108; }
+        else if (rand < 70.0) { txt = "Một tài khoản game Free Fire VIP (30%)"; angle = 198; }
+        else { txt = "Một cái nịt thần thánh (30%)"; angle = 306; }
+        const rot = 2160 + (360 - angle); const w = document.getElementById("wheel"); w.style.transform = `rotate(${rot}deg)`;
+        setTimeout(() => {
+            isSpinning = false; updateUI();
+            const b = document.getElementById("reward-display"); b.innerText = `🎁 KẾT QUẢ: Bạn trúng [ ${txt} ]`; b.style.display = "block";
+            if (rand < 40.0) document.getElementById("reward-delivery-form").style.display = "block";
+            w.style.transition = 'none'; w.style.transform = `rotate(${360 - angle}deg)`;
+            setTimeout(() => { w.style.transition = 'transform 4s cubic-bezier(0.1, 0.8, 0.1, 1)'; }, 50);
+        }, 4000);
+    }
+
+    function submitRewardDelivery() {
+        const n = document.getElementById("reward-name").value.trim(); const p = document.getElementById("reward-phone").value.trim(); const a = document.getElementById("reward-address").value.trim();
+        if (!n || !p || !a) { alert("Vui lòng nhập đủ thông tin nhận giải!"); return; }
+        document.getElementById("reward-name").value = ""; document.getElementById("reward-phone").value = ""; document.getElementById("reward-address").value = "";
+        document.getElementById("reward-delivery-form").style.display = "none";
+        alert("🎉 Đã lưu thông tin đổi quà thành công lên hệ thống vận đơn Shop Vau!");
+    }
+</script>
+</body>
+</html>
